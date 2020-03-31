@@ -1,2 +1,3 @@
-here are a few iterations of my processing code for ADAD3400 
-The aim of this code is to take webcam data, find the average RGB color, then send this information as a variable to MAX8
+here are a few iterations of my processing code and max patch for ADAD3400 
+The aim of these codes is to take webcam data, find the average RGB color, then send this information as a variable to MAX8,
+where data will control sample playback 
