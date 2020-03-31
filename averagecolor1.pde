@@ -7,13 +7,15 @@ NetAddress oscDestination;
 NetAddress myRemoteLocation;
 
 
+
+
 //int to get RGB valeus from pixels
 float red;
 float green;
 float blue;
 
 
-
+ 
 // pixel co-ordinates to find average color
 int x = 0;
 int y = 0;
@@ -25,11 +27,11 @@ Capture cam;
 
 void setup() {
 
- oscP5 = new OscP5(this, 12000);
+  oscP5 = new OscP5(this, 12000);
   oscDestination = new NetAddress("127.0.0.1", 12000);
   oscP5.plug(this, "a", "/a");
   oscP5.plug(this, "b", "/b"); 
-  
+
   noCursor();
   //fullScreen();
   size(640, 480);
@@ -50,10 +52,9 @@ void setup() {
     cam = new Capture(this, cameras[0]);
     cam.start();
   }
-  
-    // Max port info 
+
+  // Max port info 
   myRemoteLocation = new NetAddress("127.0.0.1", 7374);
-  
 }
 
 void draw() {
@@ -79,17 +80,17 @@ void draw() {
   float red = red(c);
   float green = green(c);
   float blue = blue(c);
-
+  
   println("red =" + red); 
   println("green =" + green);
   println("blue =" + blue);
   
-  //send data to max
-   OscMessage redMessage = new OscMessage(red);
-   OscMessage greenMessage = new OscMessage(green);
-   OscMessage redMessage = new OscMessage(blue);
+
+  // send data to Max
   
-  oscP5.send(redMessage, myRemoteLocation);
-  oscP5.send(greenMessage, myRemoteLocation);
-  oscP5.send(blueMessage, myRemoteLocation);
+    OscMessage myMessage = new OscMessage(int(red) + " " + int(green) + " " +int(blue));
+  oscP5.send(myMessage, myRemoteLocation);
+
+  
+
 }
